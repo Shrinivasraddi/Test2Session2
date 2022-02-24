@@ -1,1 +1,68 @@
 
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8f2: file p2final.c, line 22.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p2final.c:22
+warning: Source file is more recent than executable.
+22  {
+(gdb) n
+24    input_triangle(&a,&b,&c,&x,&y,&z);
+(gdb) s
+input_triangle (x1=0x7fff7ec29eac, y1=0x7fff7ec29eb0, x2=0x7fff7ec29eb4, 
+    y2=0x7fff7ec29eb8, x3=0x7fff7ec29ebc, y3=0x7fff7ec29ec0) at p2final.c:4
+4     printf("enter the  values of x1,x2,x3,y1,y2,y3\n");
+(gdb) n
+enter the  values of x1,x2,x3,y1,y2,y3
+5     scanf(" %f %f %f %f %f %f",x1,x2,x3,y1,y2,y3);
+(gdb) n
+1
+5
+4
+8
+7
+6
+6   }
+(gdb) n
+main () at p2final.c:25
+25    result = is_triangle(a,b,c,x,y,z);
+(gdb) s
+is_triangle (x1=1, y1=8, x2=5, y2=7, x3=4, y3=6) at p2final.c:11
+11    area=0.5*(x1*(y2-y3)+ x2*(y3-y1) + x3*(y1-y2));
+(gdb) n
+12    return area;
+(gdb) n
+13  }
+(gdb) n
+main () at p2final.c:26
+26    output(a,b,c,x,y,z,result);
+(gdb) s
+output (x1=1, y1=8, x2=5, y2=7, x3=4, y3=6, istriangle=-2) at p2final.c:16
+16  if(istriangle==0)
+(gdb) n
+19      printf("the given points %.1f %.1f  %.1f  %.1f  %.1f  %.1f  forms a triangle\n",x1,x2,x3,y1,y2,y3);
+(gdb) n
+the given points 1.0 5.0  4.0  8.0  7.0  6.0  forms a triangle
+20    }
+(gdb) n
+main () at p2final.c:27
+27    return 0;
+(gdb) n
+(gdb) q
