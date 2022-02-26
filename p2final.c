@@ -1,28 +1,37 @@
 #include<stdio.h>
-void input_triangle(float *x1, float *y1, float *x2, float *y2, float *x3, float *y3)
+#include<math.h>
+void input_triangle(float*x1,float*y1,float*x2,float*y2,float*x3,float*y3)
 {
-  printf("enter the  values of x1,x2,x3,y1,y2,y3\n");
-  scanf(" %f %f %f %f %f %f",x1,x2,x3,y1,y2,y3);
+  printf("enter the first points\n");
+  scanf("%f%f",x1,y1);
+  printf("enter the second points\n");
+  scanf("%f%f",x2,y2);
+  printf("enter the third points\n");
+  scanf("%f%f",x3,y3);
 }
-
 int is_triangle(float x1, float y1, float x2, float y2,float x3, float y3)
 {
- float area;
-  area=0.5*(x1*(y2-y3)+ x2*(y3-y1) + x3*(y1-y2));
-  return area;
+  float a,b,c;
+  a=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
+  b=sqrt(pow((x3-x2),2)+pow((y3-y2),2));
+  c=sqrt(pow((x1-x3),2)+pow((y1-y3),2));
+  if(a<b+c && b<c+a && c<a+b)
+      return 1;
+  else
+  return 0;
 }
-void output(float x1, float y1, float x2, float y2,float x3, float y3, float istriangle)
+void output(float x1, float y1, float x2, float y2,float x3, float y3, int istriangle)
 {
-if(istriangle==0)
-  printf("the given points %.1f %.1f  %.1f  %.1f  %.1f  %.1f  does not form a triangle\n",x1,x2,x3,y1,y2,y3);
-else
-    printf("the given points %.1f %.1f  %.1f  %.1f  %.1f  %.1f  forms a triangle\n",x1,x2,x3,y1,y2,y3);
-  }
+  if (istriangle==1)
+  printf("the points form a triangle\n");
+  else
+  printf("the points does not form a triangle\n");
+}
 int main()
-{
-  float a,b,c,x,y,z,result;
-  input_triangle(&a,&b,&c,&x,&y,&z);
-  result = is_triangle(a,b,c,x,y,z);
-  output(a,b,c,x,y,z,result);
+{ 
+  float x1,y1,x2,y2,x3,y3;
+  input_triangle(&x1,&y1,&x2,&y2,&x3,&y3);
+  int a = is_triangle(x1,y1,x2,y2,x3,y3);
+  output(x1,y1,x2,y2,x3,y3,a);
   return 0;
 }

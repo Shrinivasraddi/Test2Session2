@@ -14,54 +14,69 @@ For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
 (gdb) b main
-Breakpoint 1 at 0x8f2: file p2final.c, line 22.
+Breakpoint 1 at 0xa07: file p2final.c, line 31.
 (gdb) r
 Starting program: /home/runner/Test2Session2/a.out 
 warning: Error disabling address space randomization: Operation not permitted
 
-Breakpoint 1, main () at p2final.c:22
-warning: Source file is more recent than executable.
-22  {
+Breakpoint 1, main () at p2final.c:31
+31  { 
 (gdb) n
-24    input_triangle(&a,&b,&c,&x,&y,&z);
+33    input_triangle(&x1,&y1,&x2,&y2,&x3,&y3);
 (gdb) s
-input_triangle (x1=0x7fff7ec29eac, y1=0x7fff7ec29eb0, x2=0x7fff7ec29eb4, 
-    y2=0x7fff7ec29eb8, x3=0x7fff7ec29ebc, y3=0x7fff7ec29ec0) at p2final.c:4
-4     printf("enter the  values of x1,x2,x3,y1,y2,y3\n");
+input_triangle (x1=0x7ffc8cf34d9c, y1=0x7ffc8cf34da0, x2=0x7ffc8cf34da4, 
+    y2=0x7ffc8cf34da8, x3=0x7ffc8cf34dac, y3=0x7ffc8cf34db0) at p2final.c:5
+5     printf("enter the first points\n");
 (gdb) n
-enter the  values of x1,x2,x3,y1,y2,y3
-5     scanf(" %f %f %f %f %f %f",x1,x2,x3,y1,y2,y3);
+enter the first points
+6     scanf("%f%f",x1,y1);
 (gdb) n
-1
+4
 5
+7     printf("enter the second points\n");
+(gdb) n
+enter the second points
+8     scanf("%f%f",x2,y2);
+(gdb) n
 4
 8
+9     printf("enter the third points\n");
+(gdb) n
+enter the third points
+10    scanf("%f%f",x3,y3);
+(gdb) n
 7
-6
-6   }
+1
+11  }
 (gdb) n
-main () at p2final.c:25
-25    result = is_triangle(a,b,c,x,y,z);
+main () at p2final.c:34
+34    int a = is_triangle(x1,y1,x2,y2,x3,y3);
 (gdb) s
-is_triangle (x1=1, y1=8, x2=5, y2=7, x3=4, y3=6) at p2final.c:11
-11    area=0.5*(x1*(y2-y3)+ x2*(y3-y1) + x3*(y1-y2));
+is_triangle (x1=4, y1=5, x2=4, y2=8, x3=7, y3=1) at p2final.c:15
+15    a=sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 (gdb) n
-12    return area;
+16    b=sqrt(pow((x3-x2),2)+pow((y3-y2),2));
 (gdb) n
-13  }
+17    c=sqrt(pow((x1-x3),2)+pow((y1-y3),2));
 (gdb) n
-main () at p2final.c:26
-26    output(a,b,c,x,y,z,result);
+18    if(a<b+c && b<c+a && c<a+b)
+(gdb) n
+19        return 1;
+(gdb) n
+22  }
+(gdb) n
+main () at p2final.c:35
+35    output(x1,y1,x2,y2,x3,y3,a);
 (gdb) s
-output (x1=1, y1=8, x2=5, y2=7, x3=4, y3=6, istriangle=-2) at p2final.c:16
-16  if(istriangle==0)
+output (x1=4, y1=5, x2=4, y2=8, x3=7, y3=1, istriangle=1) at p2final.c:25
+25    if (istriangle==1)
 (gdb) n
-19      printf("the given points %.1f %.1f  %.1f  %.1f  %.1f  %.1f  forms a triangle\n",x1,x2,x3,y1,y2,y3);
+26    printf("the points form a triangle\n");
 (gdb) n
-the given points 1.0 5.0  4.0  8.0  7.0  6.0  forms a triangle
-20    }
+the points form a triangle
+29  }
 (gdb) n
-main () at p2final.c:27
-27    return 0;
+main () at p2final.c:36
+36    return 0;
 (gdb) n
-(gdb) q
+37  }(gdb)
